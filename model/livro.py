@@ -2,6 +2,7 @@ from model.categoria import Categoria
 from model.editora import Editora
 from model.autor import Autor
 
+
 class Livro:
 
     def __init__(self, id: int, titulo: str, resumo: str, ano: int, paginas: int, isbn: str, categoria: Categoria, editora: Editora, autor: Autor):
@@ -59,7 +60,7 @@ class Livro:
     def isbn(self) -> str:
         return self.__isbn
 
-    @titulo.setter
+    @isbn.setter
     def isbn(self, isbn: str):
         self.__isbn = isbn
 
