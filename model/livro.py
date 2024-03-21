@@ -5,7 +5,7 @@ from model.autor import Autor
 
 class Livro:
 
-    def __init__(self, id: int, titulo: str, resumo: str, ano: int, paginas: int, isbn: str, categoria: Categoria, editora: Editora, autor: Autor):
+    def __init__(self, id: int = None, titulo: str = None, resumo: str = None, ano: int = None, paginas: int = None, isbn: str = None, categoria: Categoria = None, editora: Editora = None, autor: Autor = None):
         self.__id: int = id
         self.__titulo: str = titulo
         self.__resumo: str = resumo

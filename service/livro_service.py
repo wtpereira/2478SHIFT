@@ -8,6 +8,7 @@ from dao.autor_dao import AutorDAO
 from model.autor import Autor
 from typing import cast
 
+
 class LivroService:
 
     def __init__(self, categoria_dao: CategoriaDAO, editora_dao: EditoraDAO, autor_dao: AutorDAO):
@@ -60,7 +61,6 @@ class LivroService:
         print('\nAdicionando livro...')
 
         try:
-            id = self.__livro_dao.ultimo_id() + 1
             titulo = input('Digite o título do livro: ')
             resumo = input('Digite o resumo do livro: ')
             ano = int(input('Digite o ano do livro: '))
@@ -106,7 +106,7 @@ class LivroService:
                 id_autor = int(input('Digite o ID do autor do livro: '))
                 autor: Autor = self.__autor_dao.buscar_por_id(id_autor)
 
-            novo_livro = Livro(id, titulo, resumo, ano, paginas, isbn, categoria, editora, autor)
+            novo_livro = Livro(titulo=titulo, resumo=resumo, ano=ano, paginas=paginas, isbn=isbn, categoria=categoria, editora=editora, autor=autor)
 
             self.__livro_dao.adicionar(novo_livro)
             print('Livro adicionado com sucesso!')
