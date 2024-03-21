@@ -1,6 +1,6 @@
 class Autor:
 
-    def __init__(self, id: int, nome: str, email: str, telefone: str, bio: str):
+    def __init__(self, id: int = None, nome: str = None, email: str = None, telefone: str = None, bio: str = None):
         self.__id: int = id
         self.__nome: str = nome
         self.__email: str = email

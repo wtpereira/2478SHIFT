@@ -1,38 +1,59 @@
+from database.conexao_factory import ConexaoFactory
 from model.autor import Autor
+
 
 class AutorDAO:
 
     def __init__(self):
-        self.__autores: list[Autor] = list()
+        self.__conexao_factory = ConexaoFactory()
 
     def listar(self) -> list[Autor]:
-        return self.__autores
+        autores = list()
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT id, nome, email, telefone, biografia FROM autores")
+        resultados = cursor.fetchall()
+        for resultado in resultados:
+            autor = Autor(resultado[0], resultado[1], resultado[2], resultado[3], resultado[4])
+            autores.append(autor)
+        cursor.close()
+        conexao.close()
+        return autores
 
     def adicionar(self, autor: Autor) -> None:
-        self.__autores.append(autor)
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute(
+            "INSERT INTO autores (nome, email, telefone, biografia) VALUES (%(nome)s, %(email)s, %(telefone)s, %(biografia)s)",
+            ({'nome': autor.nome, 'email': autor.email, 'telefone': autor.telefone, 'biografia': autor.bio}))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
 
     def remover(self, autor_id: int) -> bool:
-        encontrado = False
-        for a in self.__autores:
-            if (a.id == autor_id):
-                index = self.__autores.index(a)
-                self.__autores.pop(index)
-                encontrado = True
-                break
-        return encontrado
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute(f"DELETE FROM autores WHERE id = {autor_id}")
+        autores_removidos = cursor.rowcount
+        conexao.commit()
+        cursor.close()
+        conexao.close()
+
+        if autores_removidos == 0:
+            return False
+
+        return True
 
     def buscar_por_id(self, autor_id) -> Autor:
         aut = None
-        for a in self.__autores:
-            if (a.id == autor_id):
-                aut = a
-                break
-        return aut
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute(f"SELECT id, nome, email, telefone, biografia FROM autores WHERE id = {autor_id}")
+        resultado = cursor.fetchone()
+        if resultado:
+            aut = Autor(resultado[0], resultado[1], resultado[2], resultado[3], resultado[4])
 
-    def ultimo_id(self) -> int:
-        index = len(self.__autores) -1
-        if (index == -1):
-            id = 0
-        else:
-            id = self.__autores[index].id
-        return id
+        cursor.close()
+        conexao.close()
+
+        return aut

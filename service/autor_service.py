@@ -1,6 +1,7 @@
 from dao.autor_dao import AutorDAO
 from model.autor import Autor
 
+
 class AutorService:
 
     def __init__(self):
@@ -54,7 +55,6 @@ class AutorService:
         print('\nAdicionando autor...')
 
         try:
-            id = self.__autor_dao.ultimo_id() + 1
             nome = input('Digite o nome do autor: ')
             email = input('Digite o email do autor: ')
             telefone = input('Digite o telefone do autor: ')
