@@ -5,7 +5,6 @@ from model.categoria import Categoria
 class CategoriaDAO:
 
     def __init__(self):
-        self.__categorias = []
         self.__conexao_factory = ConexaoFactory()
 
     def listar(self) -> list[Categoria]:
