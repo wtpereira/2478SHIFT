@@ -1,6 +1,7 @@
 from dao.editora_dao import EditoraDAO
 from model.editora import Editora
 
+
 class EditoraService:
 
     def __init__(self):
@@ -54,7 +55,6 @@ class EditoraService:
         print('\nAdicionando editora...')
 
         try:
-            id = self.__editora_dao.ultimo_id() + 1
             nome = input('Digite o nome da editora: ')
             endereco = input('Digite o endereço da editora: ')
             telefone = input('Digite o telefone da editora: ')
