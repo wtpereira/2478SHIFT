@@ -1,6 +1,6 @@
 class Categoria:
 
-    def __init__(self, id: int=None, nome: str=None):
+    def __init__(self, id: int = None, nome: str = None):
         self.__id: int = id
         self.__nome: str = nome
 

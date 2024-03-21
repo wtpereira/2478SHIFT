@@ -1,6 +1,7 @@
 from dao.categoria_dao import CategoriaDAO
 from model.categoria import Categoria
 
+
 class CategoriaService:
 
     def __init__(self):
