@@ -57,3 +57,7 @@ class EditoraDAO:
         conexao.close()
 
         return edt
+
+    def adicionar_muitos(self, lista_editoras: list):
+        for editora in lista_editoras:
+            self.adicionar(editora)

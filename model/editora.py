@@ -6,6 +6,12 @@ class Editora:
         self.__endereco: str = endereco
         self.__telefone: str = telefone
 
+    def __str__(self) -> str:
+        return f'{self.id} | {self.nome} | {self.endereco} | {self.telefone}'
+
+    def __repr__(self) -> str:
+        return f'{self.id} | {self.nome} | {self.endereco} | {self.telefone}'
+
     @property
     def id(self) -> int:
         return self.__id
@@ -37,3 +43,9 @@ class Editora:
     @telefone.setter
     def telefone(self, telefone):
         self.__telefone = telefone
+
+    def dump(self) -> dict:
+        if self.__id:
+            return {'id': self.__id, 'nome': self.__nome, 'endereco': self.__endereco, 'telefone': self.__telefone}
+
+        return {'nome': self.__nome, 'endereco': self.__endereco, 'telefone': self.__telefone}
