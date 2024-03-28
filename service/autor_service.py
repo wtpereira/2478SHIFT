@@ -90,7 +90,7 @@ class AutorService:
             id = int(input('Digite o Id do autor para buscar: '))
             aut = self.__autor_dao.buscar_por_id(id)
 
-            if (aut == None):
+            if aut is None:
                 print('Autor não encontrado!')
             else:
                 print(f'Id: {aut.id} | Autor: {aut.nome} | Email: {aut.email} | Telefone: {aut.telefone} | Bio: {aut.bio}')

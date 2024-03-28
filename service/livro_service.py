@@ -6,16 +6,19 @@ from dao.editora_dao import EditoraDAO
 from model.editora import Editora
 from dao.autor_dao import AutorDAO
 from model.autor import Autor
-from typing import cast
+
+from service.autor_service import AutorService
+from service.categoria_service import CategoriaService
+from service.editora_service import EditoraService
 
 
 class LivroService:
 
-    def __init__(self, categoria_dao: CategoriaDAO, editora_dao: EditoraDAO, autor_dao: AutorDAO):
+    def __init__(self):
         self.__livro_dao: LivroDAO = LivroDAO()
-        self.__categoria_dao: CategoriaDAO = categoria_dao
-        self.__editora_dao: EditoraDAO = editora_dao
-        self.__autor_dao: AutorDAO = autor_dao
+        self.__categoria_dao: CategoriaDAO = CategoriaService().categoria_dao
+        self.__editora_dao: EditoraDAO = EditoraService().editora_dao
+        self.__autor_dao: AutorDAO = AutorService().autor_dao
 
     def menu(self):
         print('[Livros] Escolha uma das seguintes opções:\n'
@@ -75,7 +78,7 @@ class LivroService:
             id_categoria = int(input('Digite o ID da categoria do livro: '))
             categoria: Categoria = self.__categoria_dao.buscar_por_id(id_categoria)
 
-            while(categoria == None):
+            while (categoria is None):
                 print('Categoria não existente!')
                 id_categoria = int(input('Digite o ID da categoria do livro: '))
                 categoria: Categoria = self.__categoria_dao.buscar_por_id(id_categoria)
@@ -88,7 +91,7 @@ class LivroService:
             id_editora = int(input('Digite o ID da editora do livro: '))
             editora: Editora = self.__editora_dao.buscar_por_id(id_editora)
 
-            while(editora == None):
+            while (editora is None):
                 print('Editora não existente!')
                 id_editora = int(input('Digite o ID da editora do livro: '))
                 editora: Editora = self.__editora_dao.buscar_por_id(id_editora)
@@ -101,7 +104,7 @@ class LivroService:
             id_autor = int(input('Digite o ID do autor do livro: '))
             autor: Autor = self.__autor_dao.buscar_por_id(id_autor)
 
-            while(autor == None):
+            while (autor is None):
                 print('Autor não existente!')
                 id_autor = int(input('Digite o ID do autor do livro: '))
                 autor: Autor = self.__autor_dao.buscar_por_id(id_autor)
@@ -138,7 +141,7 @@ class LivroService:
             id = int(input('Digite o Id do livro para buscar: '))
             liv = self.__livro_dao.buscar_por_id(id)
 
-            if (liv == None):
+            if liv is None:
                 print('Livro não encontrado!')
             else:
                 print(f'Id: {liv.id} | Título: {liv.titulo} | Resumo: {liv.resumo} | Ano: {str(liv.ano)} | Páginas: {str(liv.paginas)} | Isbn: {liv.isbn} | Categoria: {liv.categoria.nome}  | Editora: {liv.editora.nome}  | Autor: {liv.autor.nome}')

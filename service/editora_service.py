@@ -99,7 +99,7 @@ class EditoraService:
             id = int(input('Digite o Id da editora para buscar: '))
             edt = self.__editora_dao.buscar_por_id(id)
 
-            if (edt == None):
+            if edt is None:
                 print('Editora não encontrada!')
             else:
                 print(f'{edt.id} | {edt.nome} | {edt.endereco} | {edt.telefone}')

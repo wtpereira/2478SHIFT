@@ -87,7 +87,7 @@ class CategoriaService:
             id = int(input('Digite o Id da categoria para buscar: '))
             cat = self.__categoria_dao.buscar_por_id(id)
 
-            if (cat == None):
+            if cat is None:
                 print('Categoria não encontrada!')
             else:
                 print(f'Id: {cat.id} | Categoria: {cat.nome}')
