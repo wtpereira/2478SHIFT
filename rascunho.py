@@ -1,6 +1,7 @@
 import csv
 
 from model.editora import Editora
+from database.conexao_factory import ConexaoFactory
 
 
 def ler_csv_primeiro() -> None:
@@ -98,6 +99,22 @@ if __name__ == '__main__':
     for editora in lista_editoras:
         print(editora)
 """
+
+
+class ConexaoFactoryHandler(object):
+    def __init__(self):
+        self.__conexao_factory = ConexaoFactory()
+
+    def __enter__(self):
+        self.conexao = self.__conexao_factory.get_conexao()
+        self.cursor = self.conexao.cursor()
+        return self.cursor
+
+    def __exit__(self, *args):
+        self.cursor.close()
+        self.conexao.close()
+        print("Tudo fechado!!!")
+
 
 if __name__ == '__main__':
     criando_csv_usando_lista_de_editoras(ler_csv_e_gera_uma_lista_de_editoras())
