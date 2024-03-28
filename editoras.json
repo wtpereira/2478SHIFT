@@ -1,0 +1,22 @@
+[
+    {
+        "nome": "HarperCollins",
+        "endereco": "Rua A",
+        "telefone": "123"
+    },
+    {
+        "nome": "Editora Aleph",
+        "endereco": "Rua B",
+        "telefone": "456"
+    },
+    {
+        "nome": "Editora Arqueiro",
+        "endereco": "Rua C",
+        "telefone": "789"
+    },
+    {
+        "nome": "Editora DDD",
+        "endereco": "Rua D",
+        "telefone": "159"
+    }
+]
