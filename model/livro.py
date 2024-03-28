@@ -87,3 +87,9 @@ class Livro:
     @autor.setter
     def autor(self, autor: Autor):
         self.__autor = autor
+
+    def dump(self) -> dict:
+        if self.__id:
+            return {'id': self.__id, 'titulo': self.__titulo, 'autor': self.__autor.dump()}
+
+        return {'titulo': self.__titulo, 'autor': self.__autor.dump()}

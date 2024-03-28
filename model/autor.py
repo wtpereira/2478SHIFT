@@ -46,3 +46,9 @@ class Autor:
     @bio.setter
     def bio(self, bio: str):
         self.__bio = bio
+
+    def dump(self) -> dict:
+        if self.__id:
+            return {'id': self.__id, 'nome': self.__nome, 'email': self.__email}
+
+        return {'nome': self.__nome, 'email': self.__email}
