@@ -2,11 +2,13 @@ from service.categoria_service import CategoriaService
 from service.editora_service import EditoraService
 from service.autor_service import AutorService
 from service.livro_service import LivroService
+from service.box_service import BoxService
 
 categoria_service = CategoriaService()
 editora_service = EditoraService()
 autor_service = AutorService()
-livro_service = LivroService(categoria_service.categoria_dao, editora_service.editora_dao, autor_service.autor_dao)
+livro_service = LivroService()
+box_service = BoxService()
 
 
 def menu_principal():
@@ -15,6 +17,7 @@ def menu_principal():
             '2 - Editoras\n'
             '3 - Autores\n'
             '4 - Livros\n'
+            '5 - Box de livros\n'
             '0 - Sair do programa\n')
     escolha = input('Digite a opção: ')
 
@@ -29,6 +32,8 @@ def menu_principal():
         autor_service.menu()
     elif escolha == '4':
         livro_service.menu()
+    elif escolha == '5':
+        box_service.menu()
     else:
         print('Opção inválida! Por favor, tente novamente!')
 
